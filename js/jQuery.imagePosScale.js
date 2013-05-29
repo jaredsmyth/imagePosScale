@@ -43,16 +43,16 @@
 	var methods = {
 		init : function (options){
 			var self = this;
-			$(this).data('options_imageposscale', $.extend(this, defaultSettings, options));
-			var options = $(this).data('options_imageposscale');
+			$(this).data('options_imagePosScale', $.extend(this, defaultSettings, options));
+			var options = $(this).data('options_imagePosScale');
 
-			$(self).imageposscale('scale');
+			$(self).imagePosScale('scale');
 			
 		},
 
 		scale : function(){
 			var self = this;
-			var options = $(self).data('options_imageposscale');
+			var options = $(self).data('options_imagePosScale');
 
 			var containerWidth = $(this).width();
 			var containerHeight = $(this).height();
@@ -107,12 +107,12 @@
 				'cHeight' : containerHeight
 			}
 
-			$(self).imageposscale('align', styleOpts);
+			$(self).imagePosScale('align', styleOpts);
 		},
 
 		align : function(styleOpts){
 			var self = this;
-			var options = $(self).data('options_imageposscale');
+			var options = $(self).data('options_imagePosScale');
 
 			//check our alignX options
 			switch(options.method['alignX']){
@@ -140,7 +140,7 @@
 					break
 			}
 
-			$(self).imageposscale('render',styleOpts);
+			$(self).imagePosScale('render',styleOpts);
 
 		},
 

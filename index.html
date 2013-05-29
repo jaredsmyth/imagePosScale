@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<head>
+	<title> center images </title>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jQuery.imagePosScale.js"></script>
+</head>
+<body>
+	<div style="width:500px; margin:auto;">
+		<h1>BOX: square, IMG: square</h1>
+		<div class="box" style="width:200px; height:200px; overflow: hidden; background-color:red;">
+			<img src="img/square.jpg">
+		</div>
+		<h1>BOX: square, IMG: landscape</h1>
+		<div class="box " style="width:200px; height:200px; overflow: hidden; background-color:red;">
+			<img src="img/landscape.jpg">
+		</div>
+		<h1>BOX: square, IMG: portrait</h1>
+		<div class="box boxbottomright" style="width:200px; height:200px; overflow: hidden; background-color:red;">
+			<img src="img/portrait.jpg">
+		</div>
+		<br />
+		<br />
+		<h1>BOX: portrait, IMG: square</h1>
+		<div class="box" style="width:430px; height:500px; overflow: hidden; background-color:red;">
+			<img src="img/square.jpg">
+		</div>
+		<h1>BOX: portrait, IMG: landscape</h1>
+		<div class="box boxleft" style="width:430px; height:500px; overflow: hidden; background-color:red;">
+			<img src="img/landscape.jpg">
+		</div>
+		<h1>BOX: portrait, IMG: portrait</h1>
+		<div class="box boxcenterleft" style="width:430px; height:500px; overflow: hidden; background-color:red;">
+			<img src="img/portrait.jpg">
+		</div>
+		<br />
+		<br />
+		<h1>BOX: landscape, IMG: square</h1>
+		<div class="box" style="width:500px; height:300px; overflow: hidden; background-color:red;">
+			<img src="img/square.jpg">
+		</div>
+		<h1>BOX: landscape, IMG: landscape</h1>
+		<div class="box" style="width:500px; height:300px; overflow: hidden; background-color:red;">
+			<img src="img/landscape.jpg">
+		</div>
+		<h1>BOX: landscape, IMG: portrait</h1>
+		<div class="box boxcenterlefttop" style="width:500px; height:300px; overflow: hidden; background-color:red;">
+			<img src="img/portrait.jpg">
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('.box').each(function(){
+				if($(this).hasClass('boxcenterlefttop')){
+					$(this).imagePosScale({'method':{'style':'center','alignX':'center','alignY':'bottom'}});
+				}else if ($(this).hasClass('boxcenterleft')){
+					$(this).imagePosScale({'method':{'style':'center','alignX':'left','alignY':'center'}});
+				}else if ($(this).hasClass('boxleft')) {
+					$(this).imagePosScale({'padAmount':'1','method':{'style':'fill','alignX':'left','alignY':'center'}});
+				}else if ($(this).hasClass('boxbottomright')){
+					$(this).imagePosScale({'method':{'style':'center','alignX':'right','alignY':'bottom'}});
+				} else {
+					$(this).imagePosScale();
+				}
+			});
+		});
+	</script>
+</body>

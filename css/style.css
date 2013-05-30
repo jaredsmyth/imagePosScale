@@ -1,0 +1,6 @@
+.wrapper {width:500px; margin:auto;}
+
+.square, .portrait, .landscape {background-color:red; overflow:hidden;}
+.square {width:200px; height:200px;}
+.portrait {width:430px; height:500px;}
+.landscape {width:500px; height:300px;}

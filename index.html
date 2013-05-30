@@ -8,6 +8,7 @@
 	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 	<script type="text/javascript" src="jQuery2.0.js"></script>
 	<script type="text/javascript" src="js/jQuery.imagePosScale.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 
 </head>
 <body>
@@ -53,22 +54,5 @@
 			<img src="img/portrait.jpg">
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(window).load(function(){
-			$('.box').each(function(){
-				if($(this).hasClass('boxcenterlefttop')){
-					$(this).imagePosScale({'method':{'style':'center','alignX':'center','alignY':'bottom'}});
-				}else if ($(this).hasClass('boxcenterleft')){
-					$(this).imagePosScale({'method':{'style':'center','alignX':'left','alignY':'center'}});
-				}else if ($(this).hasClass('boxleft')) {
-					$(this).imagePosScale({'padAmount':'2','method':{'style':'fill','alignX':'left','alignY':'center'}});
-				}else if ($(this).hasClass('boxbottomright')){
-					$(this).imagePosScale({'method':{'style':'center','alignX':'right','alignY':'bottom'}});
-				} else {
-					$(this).imagePosScale();
-				}
-			});
-		});
-	</script>
 </body>
 </html>

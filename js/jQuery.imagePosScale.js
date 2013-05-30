@@ -46,7 +46,16 @@
 			$(this).data('options_imagePosScale', $.extend(this, defaultSettings, options));
 			var options = $(this).data('options_imagePosScale');
 
+			//check for pad amount and reset to one if set to 0
+			switch(options.padAmount){
+				case '0':
+					options.padAmount = 1;
+					break;
+			}
+
 			$(self).imagePosScale('scale');
+
+			console.log(options);
 			
 		},
 

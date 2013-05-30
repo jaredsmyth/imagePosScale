@@ -56,8 +56,8 @@
 
 			var containerWidth = $(this).width();
 			var containerHeight = $(this).height();
-			var imageWidth = $('img', this).width();
-			var imageHeight = $('img', this).height();
+			var imageWidth = $('img', this).width()*options.padAmount;
+			var imageHeight = $('img', this).height()*options.padAmount;
 
 			//setup maxwidth and maxheight
 			var maxHeight = parseInt(imageHeight*options.maxEnlargement)+'px';
@@ -70,8 +70,8 @@
 			else rto = (ratioW > ratioH) ? ratioW: ratioH;
 			
 			//default settings to fill / center
-			var newWidth = (imageWidth * rto)*options.padAmount;
-			var newHeight = (imageHeight * rto)*options.padAmount;
+			var newWidth = (imageWidth * rto);
+			var newHeight = (imageHeight * rto);
 			var cleanLeft = (containerWidth-newWidth)/2;
 			var cleanTop = (containerHeight-newHeight)/2;
 			var finalHeight = parseInt(newHeight);

@@ -1,4 +1,4 @@
-jQuery.imagePosScale
+imagePosScale
 ====================
 
 provides a quick, reliable, cross-browser image scaling, positioning, and relative ratio calculator to allow for images of different sizes and ratios to fill their parent containers.

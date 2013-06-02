@@ -3,8 +3,6 @@
 	Plugin	: Jquery Image Positioning and Scaling
 	Author	: Jared Smith | http://jaredsmyth.info
 	Company : JVST | http://jvst.us
-
-	License: Creative Commons Attribution-ShareAlike 3.0
 */
 ;(function($) {
 
@@ -12,11 +10,11 @@
 	var defaultSettings = {
 		//padAmount sets the amount to extend the image past the edges of the 
 		//wrapper div
-		'padAmount' : '1',
+		'padAmount' : 1,
 
 		//maxEnlargement sets the maximum amount to scale the image UP from
 		//its original size. set as float in percentage
-		'maxEnlargement' : '1',
+		'maxEnlargement' : 1,
 
 		//method[style] allows for values of 'fill' or 'center' - sets whether the
 		//image should 'fill' the container in a cropping style, or 'center'
@@ -35,6 +33,18 @@
 			'style' : 'fill', 
 			'alignX' : 'center',
 			'alignY' : 'center'
+		},
+
+		//we don't ever manually set these - they just get instanced here
+		'styleOpts' : {
+			'cleanLeft' : '',
+			'cleanTop' : '',
+			'finalWidth' : '',
+			'finalHeight' : '',
+			'maxHeight' : '',
+			'maxWidth' : '',
+			'cWidth' : '',
+			'cHeight' : ''
 		}
 
 	};
@@ -53,20 +63,22 @@
 					break;
 			}
 
-			$(self).imagePosScale('scale');
+			//add 0.5 to whatever our padAmount is
+			//this fixes sub-pixel renderings for browsers that don't render fractional pixels
+			options.padAmount+=0.5; 
 
-			console.log(options);
-			
+			//get to it
+			$(self).imagePosScale('scale');
 		},
 
 		scale : function(){
 			var self = this;
 			var options = $(self).data('options_imagePosScale');
 
-			var containerWidth = $(this).width();
-			var containerHeight = $(this).height();
-			var imageWidth = $('img', this).width()*options.padAmount;
-			var imageHeight = $('img', this).height()*options.padAmount;
+			var containerWidth = $(self).width();
+			var containerHeight = $(self).height();
+			var imageWidth = $('img', self).width()*options.padAmount;
+			var imageHeight = $('img', self).height()*options.padAmount;
 
 			//setup maxwidth and maxheight
 			var maxHeight = parseInt(imageHeight*options.maxEnlargement)+'px';
@@ -87,7 +99,6 @@
 			var finalWidth = parseInt(newWidth);
 
 			
-
 			if(finalWidth > finalHeight){
 				if(options.method['style'] == 'center'){
 					finalWidth = containerWidth;
@@ -105,74 +116,71 @@
 				}
 			}
 
-			var styleOpts = {
+			options.styleOpts = {
 				'cleanLeft' : cleanLeft,
 				'cleanTop' : cleanTop,
 				'finalWidth' : finalWidth,
 				'finalHeight' : finalHeight,
 				'maxHeight' : maxHeight,
-				'maxWidth' :maxWidth,
+				'maxWidth' : maxWidth,
 				'cWidth' : containerWidth,
 				'cHeight' : containerHeight
 			}
 
-			$(self).imagePosScale('align', styleOpts);
+			$(self).imagePosScale('align');
 		},
 
-		align : function(styleOpts){
+		align : function(){
 			var self = this;
 			var options = $(self).data('options_imagePosScale');
 
 			//check our alignX options
 			switch(options.method['alignX']){
 				case 'center':
-					styleOpts['cleanLeft'] = (styleOpts['cWidth']-styleOpts['finalWidth'])/2;
+					options.styleOpts['cleanLeft'] = (options.styleOpts['cWidth']-options.styleOpts['finalWidth'])/2;
 					break;
 				case 'left':
-					styleOpts['cleanLeft'] = '0';
+					options.styleOpts['cleanLeft'] = '0';
 					break;
 				case 'right':
-					styleOpts['cleanLeft'] = (styleOpts['cWidth']-styleOpts['finalWidth']);
+					options.styleOpts['cleanLeft'] = (options.styleOpts['cWidth']-options.styleOpts['finalWidth']);
 					break
 			}
 
 			//check our alignY options
 			switch(options.method['alignY']){
 				case 'center':
-					styleOpts['cleanTop'] = (styleOpts['cHeight']-styleOpts['finalHeight'])/2;
+					options.styleOpts['cleanTop'] = (options.styleOpts['cHeight']-options.styleOpts['finalHeight'])/2;
 					break;
 				case 'top':
-					styleOpts['cleanTop'] = '0';
+					options.styleOpts['cleanTop'] = '0';
 					break;
 				case 'bottom':
-					styleOpts['cleanTop'] = (styleOpts['cHeight']-styleOpts['finalHeight']);
+					options.styleOpts['cleanTop'] = (options.styleOpts['cHeight']-options.styleOpts['finalHeight']);
 					break
 			}
 
-			$(self).imagePosScale('render',styleOpts);
+			$(self).imagePosScale('render');
 
 		},
 
-		render : function(styleOpts){
-			$('img', this).css({
-				'margin-left':styleOpts['cleanLeft']+'px',
-				'margin-top':styleOpts['cleanTop']+'px',
-				'width':styleOpts['finalWidth']+'px', 
-				'height':styleOpts['finalHeight']+'px', 
-				'max-width':styleOpts['maxWidth'],
-				'max-height':styleOpts['maxHeight']
+		render : function(){
+			var self = this;
+			var options = $(self).data('options_imagePosScale');
+			$('img', self).css({
+				'margin-left' : options.styleOpts['cleanLeft']+'px',
+				'margin-top' : options.styleOpts['cleanTop']+'px',
+				'width' : options.styleOpts['finalWidth']+'px', 
+				'height' : options.styleOpts['finalHeight']+'px', 
+				'max-width' : options.styleOpts['maxWidth'],
+				'max-height' : options.styleOpts['maxHeight']
 			});
 		}
 
 	};
 
 	$.fn.imagePosScale = function( method ) {
-    	if ( methods[method] ) {
-      	return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-    	} else if ( typeof method === 'object' || ! method ) {
-      	return methods.init.apply( this, arguments );
-    	} else {
-      	$.error( 'Method ' +  method + ' does not exist on jQuery.imagePosScale' );
-    	}    
+		var el = this;
+		methodLoader(methods, method, el, 'imagePosScale');   
   	};
 })( jQuery );

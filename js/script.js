@@ -24,3 +24,16 @@ $(window).load(function(){
 		}
 	});
 });
+
+$(document).ready(function(){
+	$('.box').each(function(){
+		$(this).bind('mouseover', function(){
+			$(this).css('overflow','visible');
+			$('img', this).css('opacity','0.7');
+		});
+		$(this).bind('mouseout', function(){
+			$(this).css('overflow','hidden');
+			$('img', this).css('opacity','1');
+		});
+	});
+});

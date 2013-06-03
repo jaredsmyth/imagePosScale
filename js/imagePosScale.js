@@ -63,10 +63,6 @@
 					break;
 			}
 
-			//add 0.75 to whatever our padAmount is
-			//this fixes sub-pixel renderings for browsers that don't render fractional pixels
-			options.padAmount+=0.75; 
-
 			//get to it
 			$(self).imagePosScale('scale');
 		},
@@ -117,8 +113,8 @@
 			}
 
 			options.styleOpts = {
-				'cleanLeft' : cleanLeft,
-				'cleanTop' : cleanTop,
+				'cleanLeft' : Math.ceil(cleanLeft),
+				'cleanTop' : Math.ceil(cleanTop),
 				'finalWidth' : finalWidth,
 				'finalHeight' : finalHeight,
 				'maxHeight' : maxHeight,

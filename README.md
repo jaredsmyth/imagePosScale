@@ -5,7 +5,7 @@ provides a quick, reliable, cross-browser image scaling, positioning, and relati
 
 ---------
 
-[demo page here:](http://jaredsmyth.github.io/imagePosScale/)
+[demo page here](http://jaredsmyth.github.io/imagePosScale/)
 
 ---------
 

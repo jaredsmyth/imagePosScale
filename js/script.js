@@ -29,11 +29,11 @@ $(document).ready(function(){
 	$('.box').each(function(){
 		$(this).bind('mouseover', function(){
 			$(this).css('overflow','visible');
-			$('img', this).css('opacity','0.7');
+			$('img', this).animate({opacity:0.7},150);
 		});
-		$(this).bind('mouseout', function(){
+		$(this).bind('mouseleave', function(){
 			$(this).css('overflow','hidden');
-			$('img', this).css('opacity','1');
+			$('img', this).animate({opacity:1},150);
 		});
 	});
 });

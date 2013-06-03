@@ -1,6 +1,4 @@
-.wrapper {width:500px; margin:auto;}
-
-.square, .portrait, .landscape {background-color:#e24e42; overflow:hidden;}
+.square, .portrait, .landscape {background-color:#e24e42; overflow:hidden; cursor:crosshair;}
 .square {width:200px; height:200px;}
 .portrait {width:430px; height:500px;}
 .landscape {width:500px; height:300px;} 
@@ -253,6 +251,7 @@ h2 {
   font-weight: bold;
   color: #303030;
   margin-bottom: 8px;
+  margin-top:25px;
 } 
 
 h3 {
@@ -260,6 +259,9 @@ h3 {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
+  margin-top:25px;
+  border-top:1px solid #d6d6d6;
+  padding-top:10px;
 } 
  
 h4 {

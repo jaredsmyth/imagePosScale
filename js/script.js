@@ -12,7 +12,7 @@ var methodLoader = function(methods, method, el, name){
 $(window).load(function(){ 
 	$('.box').each(function(){
 		if($(this).hasClass('boxcenterlefttop')){
-			$(this).imagePosScale({'method':{'style':'center','alignX':'center','alignY':'bottom'}});
+			$(this).imagePosScale({'method':{'style':'center','alignX':'center','alignY':'top'}});
 		}else if ($(this).hasClass('boxcenterleft')){
 			$(this).imagePosScale({'method':{'style':'center','alignX':'left','alignY':'center'}});
 		}else if ($(this).hasClass('boxleft')) {
@@ -36,4 +36,8 @@ $(document).ready(function(){
 			$('img', this).animate({opacity:1},150);
 		});
 	});
+	$('#notes_scroll').bind('click', function(e){
+		e.preventDefault();
+		$('html, body').animate({scrollTop: $($(this).attr('href')).offset().top},300);
+	})
 });

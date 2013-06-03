@@ -176,7 +176,6 @@
 	};
 
 	$.fn.imagePosScale = function( method ) {
-		var el = this;
-		methodLoader(methods, method, el, 'imagePosScale');   
+		methodLoader(methods, method, this, 'imagePosScale');   
   	};
 })( jQuery );
